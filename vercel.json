@@ -1,0 +1,8 @@
+{
+  "framework": null,
+  "outputDirectory": ".",
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/main.html", "destination": "/index.html" }
+  ]
+}
