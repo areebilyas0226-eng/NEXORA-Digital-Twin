@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA Digital Twin</title>
+    <meta name="description" content="Interactive 3D animated digital twin platform showcase with canvas frame animations and smooth scrolling">
+    <meta property="og:title" content="NEXORA Digital Twin">
+    <meta property="og:description" content="Interactive 3D animated digital twin platform showcase with canvas frame animations and smooth scrolling">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header id="top-nav-bar">
+        <nav id="top-nav" aria-label="Main Navigation">
+            <a href="#page1" id="nav-brand" class="nav-brand-link" aria-label="NEXORA Home">
+                <svg class="brand-glyph" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="16,2 30,10 16,18 2,10" stroke="#42D9FF" stroke-width="1.8" fill="rgba(66, 217, 255, 0.15)"/>
+                    <polygon points="2,14 16,22 30,14" stroke="#D6B36A" stroke-width="1.8" fill="none"/>
+                    <polygon points="2,22 16,30 30,22" stroke="#142A45" stroke-width="1.8" fill="none"/>
+                    <circle cx="16" cy="10" r="2.5" fill="#F4E7C1"/>
+                </svg>
+                <div class="brand-text-wrap">
+                    <span class="brand-title">NEXORA</span>
+                    <span class="brand-tag">DIGITAL TWIN</span>
+                </div>
+            </a>
+
+            <div class="center-nav" id="desktop-menu">
+                <a href="#page3" class="nav-link" data-target="#page3">Digital Twin</a>
+                <a href="#page9" class="nav-link" data-target="#page9">Platform</a>
+                <a href="#page6" class="nav-link" data-target="#page6">Use Cases</a>
+                <a href="#page11" class="nav-link" data-target="#page11">Insights</a>
+            </div>
+
+            <div id="right-nav">
+                <button id="book-demo-btn" class="cta-btn-primary" aria-haspopup="dialog">BOOK A DEMO</button>
+                <button id="menu-btn" class="nav-icon-btn" aria-label="Open Navigation Menu" aria-controls="mobile-nav" aria-expanded="false">
+                    <i class="ri-menu-4-line"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation Menu" aria-hidden="true">
+        <div class="drawer-header">
+            <div class="drawer-brand">
+                <svg class="brand-glyph" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="16,2 30,10 16,18 2,10" stroke="#42D9FF" stroke-width="1.8" fill="rgba(66, 217, 255, 0.15)"/>
+                    <polygon points="2,14 16,22 30,14" stroke="#D6B36A" stroke-width="1.8" fill="none"/>
+                    <circle cx="16" cy="10" r="2.5" fill="#F4E7C1"/>
+                </svg>
+                <span>NEXORA</span>
+            </div>
+            <button id="menu-close-btn" class="drawer-close-btn" aria-label="Close Navigation Menu">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <div class="drawer-nav-list">
+                <a href="#page3" class="drawer-nav-link" data-target="#page3">
+                    <span class="drawer-num">01</span>
+                    <span class="drawer-label">Digital Twin</span>
+                </a>
+                <a href="#page9" class="drawer-nav-link" data-target="#page9">
+                    <span class="drawer-num">02</span>
+                    <span class="drawer-label">Platform</span>
+                </a>
+                <a href="#page6" class="drawer-nav-link" data-target="#page6">
+                    <span class="drawer-num">03</span>
+                    <span class="drawer-label">Use Cases</span>
+                </a>
+                <a href="#page11" class="drawer-nav-link" data-target="#page11">
+                    <span class="drawer-num">04</span>
+                    <span class="drawer-label">Insights</span>
+                </a>
+            </div>
+
+            <div class="drawer-system-status">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">CORE TWIN ENGINE // PROTOTYPE DEMO</span>
+                </div>
+                <div class="status-meta">HIGH-FIDELITY BIM • SIMULATED SENSOR DATA</div>
+            </div>
+
+            <div class="drawer-action">
+                <button id="nav-drawer-demo-btn" class="cta-btn-primary full-width">BOOK A DEMO</button>
+                <div class="drawer-contact-note">Solutions inquiry: <a href="mailto:solutions@nexora.io">solutions@nexora.io</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Demo Request Modal -->
+    <div id="demo-modal" class="modal-wrapper" role="dialog" aria-modal="true" aria-labelledby="modal-heading" aria-hidden="true">
+        <div class="modal-backdrop" id="modal-backdrop-trigger"></div>
+        <div class="modal-card">
+            <button id="modal-close-btn" class="modal-close-btn" aria-label="Close demo request modal">
+                <i class="ri-close-line"></i>
+            </button>
+            <div id="modal-form-view">
+                <div class="modal-header">
+                    <div class="modal-eyebrow">
+                        <span class="eyebrow-pip"></span>
+                        NEXORA PLATFORM DEMO
+                    </div>
+                    <h2 id="modal-heading">Request a Platform Demo</h2>
+                    <p class="modal-sub">Experience how NEXORA unifies physical building geometry, mechanical systems, and simulated telemetry into an interactive digital twin.</p>
+                </div>
+                <form id="demo-form" class="modal-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="demo-name">Full Name *</label>
+                            <input type="text" id="demo-name" name="name" placeholder="e.g. Elena Rostova" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="demo-email">Work Email *</label>
+                            <input type="email" id="demo-email" name="email" placeholder="e.g. elena@metropolis.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="demo-company">Company / Organization *</label>
+                            <input type="text" id="demo-company" name="company" placeholder="e.g. Horizon Real Estate Trust" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="demo-scale">Portfolio Scale</label>
+                            <select id="demo-scale" name="scale">
+                                <option value="Commercial Tower (< 500k sq ft)">Single Commercial Tower (&lt; 500k sq ft)</option>
+                                <option value="Major Asset (500k – 2M sq ft)">Major Asset (500k – 2M sq ft)</option>
+                                <option value="Multi-Asset Portfolio (2M+ sq ft)">Multi-Asset Portfolio (2M+ sq ft)</option>
+                                <option value="Master Planned Campus">Master Planned District / Campus</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="demo-interest">Primary Area of Interest</label>
+                        <select id="demo-interest" name="interest">
+                            <option value="3D Spatial Digital Twin & BIM">3D Spatial Digital Twin &amp; BIM Model</option>
+                            <option value="Predictive Maintenance & Asset Management">Predictive Maintenance &amp; Asset Management</option>
+                            <option value="Energy Optimization & Carbon Analytics">Energy Optimization &amp; Carbon Analytics</option>
+                            <option value="Stakeholder & Tenant Portals">Stakeholder &amp; Tenant Data Portals</option>
+                            <option value="Platform Integration & API">Platform Integration &amp; API Concept</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="submit-demo-btn" class="cta-btn-primary full-width">
+                            <span>PREPARE DEMO</span>
+                            <i class="ri-arrow-right-line"></i>
+                        </button>
+                    </div>
+                    <div class="form-privacy">
+                        Demonstration environment. Designed for enterprise security with role-based access control.
+                    </div>
+                </form>
+            </div>
+            <!-- Success Confirmation State (Frontend-only) -->
+            <div id="modal-success-view" class="modal-success" style="display: none;">
+                <div class="success-icon-wrap">
+                    <i class="ri-checkbox-circle-fill"></i>
+                </div>
+                <h3>Demo request prepared</h3>
+                <p>Thank you, <span id="confirm-name">User</span>. Your demonstration scenario for <span id="confirm-company">your organization</span> has been prepared in this client session.</p>
+                <div class="success-details-card">
+                    <div class="success-row"><span>Status</span><span class="val-active">Prepared (Frontend Prototype)</span></div>
+                    <div class="success-row"><span>Target Asset</span><span id="confirm-scale">Commercial Tower</span></div>
+                    <div class="success-row"><span>Focus Area</span><span id="confirm-interest">3D Spatial Digital Twin</span></div>
+                </div>
+                <div style="font-size: 12px; color: var(--nexora-muted); text-align: center; margin-top: 10px; line-height: 1.5;">
+                    Note: This is an interactive portfolio demonstration. No live backend transmission occurred.
+                </div>
+                <button id="modal-done-btn" class="cta-btn-primary" style="margin-top: 16px;">RETURN TO PLATFORM</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Scrollable Canvas & Content Wrapper -->
+    <div data-scroll-container id="main">
+        <!-- 01 INTRODUCE: Hero Section -->
+        <div data-scroll data-scroll-speed="-5" id="page1">
+            <!-- Restrained Ambient HUD Signals -->
+            <div class="hero-hud-top">
+                <div class="hud-pill">
+                    <span class="hud-dot"></span>
+                    <span>DIGITAL TWIN // DEMO MODEL</span>
+                </div>
+                <div class="hud-pill">
+                    <i class="ri-wifi-line"></i>
+                    <span>PROPERTY DATA // SIMULATED</span>
+                </div>
+                <div class="hud-pill mobile-hidden">
+                    <i class="ri-shield-check-line"></i>
+                    <span>ASSET STATUS // CONCEPT VIEW</span>
+                </div>
+            </div>
+
+            <div class="video-wrapper">
+                <video id="hero-video" autoplay loop muted playsinline>
+                    <source src="./1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="bottom-page1">
+                <div class="hero-eyebrow">
+                    <span class="eyebrow-accent"></span>
+                    DIGITAL TWIN PLATFORM
+                </div>
+                <h1>Experience Real Estate <br> as a Digital System.</h1>
+                <div class="bottom-page1-inner">
+                    <h4>NEXORA connects physical buildings with intelligent digital twins, turning complex asset information into a visual, usable and connected experience.</h4>
+                    <div class="hero-cta-group">
+                        <button id="hero-demo-btn" class="cta-btn-primary" aria-haspopup="dialog">BOOK A DEMO</button>
+                        <button id="hero-explore-btn" class="cta-btn-secondary" data-target="#page2">
+                            <span>EXPLORE THE PLATFORM</span>
+                            <i class="ri-arrow-down-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll-indicator" id="hero-scroll-btn" role="button" tabindex="0" aria-label="Scroll to explore platform">
+                <span class="indicator-text">SCROLL TO EXPLORE</span>
+                <div class="indicator-bar"><span class="indicator-glow"></span></div>
+            </div>
+        </div>
+
+        <!-- 02 DEFINE: The Building Reimagined -->
+        <div id="page2">
+            <div class="section-tag-group">
+                <span class="section-pill">01 — DEFINITION</span>
+                <span class="hud-pill"><span class="hud-dot"></span>HIGH-FIDELITY BIM ARCHITECTURE</span>
+            </div>
+            <h2>THE BUILDING, REIMAGINED</h2>
+            <h1>A digital twin is an interactive 3D model of a physical building, connecting structural geometry, building systems, and operational data into one visual interface.</h1>
+        </div>
+
+        <!-- 03 VISUALIZE: 3D Architectural Canvas Model -->
+        <div id="page3">
+            <div class="canvas-hud-overlay top-left">
+                <div class="hud-tech-card">
+                    <div class="hud-tech-title">ASSET // 3D MODEL VIEW</div>
+                    <div class="hud-tech-meta">SPATIAL RESOLUTION: HIGH-FIDELITY BIM</div>
+                </div>
+            </div>
+            <div class="canvas-hud-overlay bottom-right">
+                <div class="hud-tech-card">
+                    <div class="hud-tech-title">DATA LAYERS // 01 GEOMETRIC TWIN</div>
+                    <div class="hud-tech-meta">INTERACTIVE MODEL // SCROLL TO INSPECT</div>
+                </div>
+            </div>
+            <canvas id="canvas-frames"></canvas>
+        </div>
+
+        <!-- 04 CONNECT: Unified Building Systems -->
+        <div id="page4">
+            <div class="section-tag-group pl-align">
+                <span class="section-pill">02 — DATA CONVERGENCE</span>
+                <span class="hud-pill"><i class="ri-stack-line"></i>DATA LAYERS // CONNECTED</span>
+            </div>
+            <h3>ONE ASSET. MANY DATA LAYERS.</h3>
+            <h1>NEXORA links architectural geometry, mechanical equipment, power distribution, and simulated sensor streams into an accessible digital record.</h1>
+        </div>
+
+        <!-- 05 VISUALIZE: Interconnect Systems Canvas Sequence -->
+        <div id="page5">
+            <div class="canvas-hud-overlay top-left">
+                <div class="hud-tech-card">
+                    <div class="hud-tech-title">SYSTEMS COORDINATION // ACTIVE</div>
+                    <div class="hud-tech-meta">STRUCTURAL BRIDGES &amp; MEP DISTRIBUTION</div>
+                </div>
+            </div>
+            <canvas id="canvas-bridges"></canvas>
+        </div>
+
+        <!-- 06 VALUE: Connected Stakeholders -->
+        <div id="page6">
+            <div class="section-tag-group pl-align">
+                <span class="section-pill">03 — COLLABORATION</span>
+                <span class="hud-pill"><i class="ri-user-shared-line"></i>STAKEHOLDERS // MULTI-USER</span>
+            </div>
+            <h3>CONNECTED STAKEHOLDERS</h3>
+            <h1>Asset owners, facility operators, structural engineers, and property managers reference a shared visual model, reducing friction across the building lifecycle.</h1>
+        </div>
+
+        <!-- 07 VISUALIZE: Spatial Coordinate Telemetry -->
+        <div id="page7">
+            <div class="canvas-hud-overlay top-left">
+                <div class="hud-tech-card">
+                    <div class="hud-tech-title">BUILDING TELEMETRY // CONCEPT VIEW</div>
+                    <div class="hud-tech-meta">SIMULATED SENSOR COORDINATES</div>
+                </div>
+            </div>
+            <div class="page7-cir">
+                <div class="page7-cir-inner"></div>
+            </div>
+            <canvas id="canvas-lore"></canvas>
+        </div>
+
+        <!-- 09 PLATFORM: The Operating System -->
+        <div id="page9">
+            <div class="left9">
+                <div class="section-tag-group">
+                    <span class="section-pill">05 — PLATFORM</span>
+                </div>
+                <h1>The Operating System for Modern Real Estate</h1>
+                <p class="left9-desc">NEXORA transforms static structural BIM models into interactive, navigable software environments. Every physical space can be visualized with linked operational history, equipment records, and performance metrics.</p>
+            </div>
+            <div class="right9">
+                <div class="right9-center" style="background-image: url('/src/assets/images/nexora_platform_twin_1789788031639.jpg');">
+                    <div class="right9-hud">
+                        <span class="hud-dot"></span>
+                        <span>NEXORA CORE // PLATFORM ARCHITECTURE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10 THREE CORE PILLARS: Spatial BIM, Connected Asset History, Operational Visibility -->
+        <div id="page10">
+            <div class="right10">
+                <div class="right10-inner">
+                    <div class="pillar-number">01</div>
+                    <h1>High-Fidelity 3D BIM</h1>
+                    <p>NEXORA creates an interactive 3D model of your building geometry, giving teams a spatial visual reference for every floor, room, and mechanical asset.</p>
+                </div>
+                <div class="right10-inner">
+                    <div class="pillar-number">02</div>
+                    <h1>Connected Asset History</h1>
+                    <p>Maintenance events, inspections, and documentation can be linked directly to the digital twin, providing an accessible record of building alterations and compliance.</p>
+                </div>
+                <div class="right10-inner">
+                    <div class="pillar-number">03</div>
+                    <h1>Operational &amp; Energy Visibility</h1>
+                    <p>By correlating occupancy, temperature, and airflow data with 3D spaces, NEXORA helps identify equipment anomalies before costly disruptions occur.</p>
+                </div>
+                <div class="right10-inner page10-sectors-inner">
+                    <div class="section-tag-group mb-4">
+                        <span class="section-pill">DEPLOYED ASSET CLASSES</span>
+                    </div>
+                    <h1>Cross-Sector Architecture</h1>
+                    <p>Validated across critical real estate environments requiring high operational uptime.</p>
+                    <div class="trust-badges-grid mt-4">
+                        <div class="trust-badge">COMMERCIAL TOWERS</div>
+                        <div class="trust-badge">CAMPUS &amp; MIXED-USE</div>
+                        <div class="trust-badge">FACILITY OPERATIONS</div>
+                        <div class="trust-badge">STRUCTURAL ENGINEERING</div>
+                        <div class="trust-badge">SUSTAINABILITY TEAMS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11 INSIGHTS & CASE STUDIES -->
+        <div id="page11">
+            <div class="page11-header">
+                <div class="section-tag-group">
+                    <span class="section-pill">06 — ENGINEERING &amp; INSIGHTS</span>
+                </div>
+                <h1>Concept Scenarios &amp; Architecture Research</h1>
+            </div>
+            <div class="page11-inner">
+                <div class="left11">
+                    <img src="/src/assets/images/nexora_case_cbre_1789788047486.jpg" alt="Commercial Real Estate Digital Twin Architecture Concept">
+                </div>
+                <div class="right11">
+                    <h4>ILLUSTRATIVE DEPLOYMENT SCENARIO</h4>
+                    <h1>Unifying Disparate BMS Data into a Unified 3D Digital Twin</h1>
+                    <p class="case-excerpt">An architectural exploration demonstrating how five separate legacy building management protocols can map onto a single 3D coordinate system.</p>
+                </div>
+            </div>
+            <div class="page11-inner">
+                <div class="left11">
+                    <img src="/src/assets/images/nexora_iot_sensors_1789788060024.jpg" alt="Mechanical Systems Fault Detection Exploration">
+                </div>
+                <div class="right11">
+                    <h4>PROTOTYPE TECHNICAL STUDY</h4>
+                    <h1>Simulated Fault Detection Across Mechanical Distribution Loops</h1>
+                    <p class="case-excerpt">Technical modeling of continuous sensor streams to identify thermal distribution variance and equipment degradation before failure.</p>
+                </div>
+            </div>
+            <div class="page11-inner">
+                <div class="left11">
+                    <img src="/src/assets/images/nexora_spatial_map_1789788075109.jpg" alt="Urban District Digital Twin Concept Network">
+                </div>
+                <div class="right11">
+                    <h4>CONCEPT ARCHITECTURE</h4>
+                    <h1>Connecting Individual Buildings into District-Scale Digital Twins</h1>
+                    <p class="case-excerpt">Design considerations and data protocols for extending asset-level digital models into shared campus and municipal infrastructure.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13 FINAL CALL TO ACTION -->
+        <div id="page13">
+            <div class="section-tag-group">
+                <span class="section-pill">08 — NEXT STEPS</span>
+            </div>
+            <h1>Experience your building <br> as a digital system.</h1>
+            <p class="page13-sub">Explore our interactive prototype and see how a connected digital twin can clarify asset operations.</p>
+            <button id="book-demo-bottom-btn" class="cta-btn-primary">
+                <span>BOOK A DEMO</span>
+                <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+
+        <!-- 15 FOOTER -->
+        <footer id="site-footer">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <div class="footer-brand">
+                        <svg class="brand-glyph" width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="16,2 30,10 16,18 2,10" stroke="#42D9FF" stroke-width="1.8" fill="rgba(66, 217, 255, 0.15)"/>
+                            <polygon points="2,14 16,22 30,14" stroke="#D6B36A" stroke-width="1.8" fill="none"/>
+                            <circle cx="16" cy="10" r="2.5" fill="#F4E7C1"/>
+                        </svg>
+                        <span class="footer-brand-name">NEXORA</span>
+                    </div>
+                    <p class="footer-tagline">NEXORA connects physical real-estate assets with intelligent digital twins, turning complex building information into a visual, usable and connected experience.</p>
+                </div>
+                <div class="footer-nav-col">
+                    <h4>PLATFORM</h4>
+                    <a href="#page2" class="footer-link">Digital Twin Concept</a>
+                    <a href="#page4" class="footer-link">Data Convergence</a>
+                    <a href="#page6" class="footer-link">Stakeholder Collaboration</a>
+                    <a href="#page10" class="footer-link">Connected Asset History</a>
+                </div>
+                <div class="footer-nav-col">
+                    <h4>APPLICATIONS</h4>
+                    <a href="#page10" class="footer-link">Commercial Real Estate</a>
+                    <a href="#page11" class="footer-link">Campus &amp; Districts</a>
+                    <a href="#page6" class="footer-link">Facilities Operations</a>
+                    <a href="#page10" class="footer-link">Asset Management</a>
+                </div>
+                <div class="footer-nav-col">
+                    <h4>EXPLORE</h4>
+                    <a href="#page2" class="footer-link">Platform Overview</a>
+                    <a href="#page11" class="footer-link">Research &amp; Insights</a>
+                    <a href="#page13" class="footer-link">Prototype Demonstration</a>
+                    <a href="mailto:solutions@nexora.io" class="footer-link">Contact Solutions Team</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2026 NEXORA Technologies Concept. Demonstration Prototype.</div>
+                <div class="footer-meta-links">
+                    <span class="footer-status"><span class="status-dot"></span> Demo Model // Concept Status</span>
+                    <a href="#page1" class="footer-meta-link">Privacy Concept</a>
+                    <a href="#page1" class="footer-meta-link">Terms</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts: Locomotive Scroll, GSAP, ScrollTrigger, NEXORA Controller -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

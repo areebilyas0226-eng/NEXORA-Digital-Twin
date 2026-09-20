@@ -1,0 +1,6 @@
+{
+  "name": "NEXORA Digital Twin",
+  "description": "Interactive 3D animated digital twin platform showcase with canvas frame animations and smooth scrolling",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
